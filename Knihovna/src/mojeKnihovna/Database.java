@@ -17,7 +17,7 @@ public class Database {
 		int index=0;
 		for(Book b: bookDatabase) {
 			
-			System.out.println("ID: "+index+b);
+			System.out.println(b);
 			index++;
 		}
 		System.out.println("__________________________________________________\n");
@@ -30,79 +30,65 @@ public class Database {
 		
 	}
 	
-	public void borrowBook(int index) {
+	public void borrowBook(int ID) {
+		boolean found=false;
+		for (Book b: bookDatabase) {
+			if(b.getID()==ID) {
+				b.borrow();		
+				found=true;
+				break;
+			}
+		}
 		
-		int length=bookDatabase.size();
-		if (index>length)
-		{
-			System.out.println("\"!!!!! ID NENI V DATABAZI  !!!!!\\n---->Stiskni ENTER<----\"");
+		if(found==false){
+			System.out.println("\"!!!!! ID NENI V DATABAZI  !!!!!\n---->Stiskni ENTER<----\"");
 			Scanner scanner=new Scanner(System.in);
 			scanner.nextLine();
-			
-			
-			
-		}
-		else {
-			
-		Book book = bookDatabase.get(index);
-		book.borrow();
-			
 		}
 		
 	}
 	
-	public void returnBook(int index) {
 	
-		int length=bookDatabase.size();
-		if (index>length)
-		{
+	public void returnBook(int ID) {
+		boolean found=false;
+		for (Book b: bookDatabase) {
+			if(b.getID()==ID) {
+				b.returnBook();		
+				found=true;
+				break;
+			}
+		}
 		
-			System.out.println("\"!!!!! ID NENI V DATABAZI  !!!!!\\n---->Stiskni ENTER<----\"");
+		if(found==false){
+			System.out.println("\"!!!!! ID NENI V DATABAZI  !!!!!\n---->Stiskni ENTER<----\"");
 			Scanner scanner=new Scanner(System.in);
 			scanner.nextLine();
-			
-			
-			
-		}
-		else {
-			Book book = bookDatabase.get(index);
-			book.returnBook();
-			
-			
-		}
-		
-				
+		}				
 	}	
 	
 	
-	public void deleteBookFromDatabase(int index) {
-		
-	int length=bookDatabase.size();
-	if (index>length)
-	{
-		System.out.println("\"!!!!! ID NENI V DATABAZI  !!!!!\\n---->Stiskni ENTER<----\"");
-		Scanner scanner=new Scanner(System.in);
-		scanner.nextLine();
-		
-		
-		
-		
-	}
-	else {
-		
-		bookDatabase.remove(index);
-		
-	}
-		
-		
+	public void deleteBookFromDatabase(int ID) {
 	
+		boolean found=false;
+		int indexCounter=0;
 		
-	}
+		for (Book b: bookDatabase) {
+			indexCounter++;
+			if(b.getID()==ID) {
+				bookDatabase.remove(indexCounter-1);	
+				found=true;
+				break;
+			}
+		}
 		
-	
-	
-			
-			
+		if(found==false){
+			System.out.println("\"!!!!! ID NENI V DATABAZI  !!!!!\n---->Stiskni ENTER<----\"");
+			Scanner scanner=new Scanner(System.in);
+			scanner.nextLine();
+		}				
+	}	
+		
+					
 			
 	}
 	

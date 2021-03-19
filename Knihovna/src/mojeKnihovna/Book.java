@@ -7,18 +7,19 @@ public class Book {
 		private String autor;
 		private LocalDate releaseDate;	
 		private Boolean borrowed=false;
+		static int staticID=0;
+		private int ID;
 		
 		
 		public Book(String name, String autor, LocalDate releaseDate) {
 			this.name=name;
 			this.autor=autor;
-			this.releaseDate=releaseDate;	
-			
-			
-			
+			this.releaseDate=releaseDate;
+			staticID++;
+			this.ID=staticID;				
 		}
 		
-		
+			
 		public void borrow() {
 			if(!borrowed) {
 				this.borrowed=true;
@@ -26,12 +27,10 @@ public class Book {
 			else {
 				System.out.println("!!!!! KNIHA JE PUJÈENA !!!!!\n---->Stiskni ENTER<----");
 				Scanner scanner=new Scanner(System.in);
-				scanner.nextLine();
-				
-			}
-			
-			
+				scanner.nextLine();			
+			}			
 		}
+		
 		
 		public void returnBook() {
 			if(borrowed) {
@@ -40,25 +39,21 @@ public class Book {
 			else {
 				System.out.println("!!!!! KNIHA JE VRÁCENA !!!!!\n---->Stiskni ENTER<----");
 				Scanner scanner=new Scanner(System.in);
-				scanner.nextLine();
-				
-			}
-			
+				scanner.nextLine();				
+			}			
 		}
 			
+		public int getID() {
+			return ID;
+		}
 		
 		@Override
 		public String toString() {
 			String borrowedString="NE";
 			if(borrowed) {
-				borrowedString="ANO";
-				
+				borrowedString="ANO";				
 			}
-			
-						
-			return "\n"+"Kniha: "+name+"\nAutor: "+ autor+"\nDatum vydání: "+releaseDate+"\nPujèeno: "+borrowedString+"\n------------";
-			
-		}
-		
-		
+								
+			return "ID:"+ID+"\n"+"Kniha: "+name+"\nAutor: "+ autor+"\nDatum vydání: "+releaseDate+"\nPujèeno: "+borrowedString+ "\n------------";		
+		}				
 }
