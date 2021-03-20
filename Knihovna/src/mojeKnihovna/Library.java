@@ -2,7 +2,7 @@ package mojeKnihovna;
 import java.time.LocalDate;
 import java.util.Scanner;
 
-public class library {
+public class Library {
 
 	public static void main(String[] args) {
 		Scanner scnr = new Scanner(System.in);

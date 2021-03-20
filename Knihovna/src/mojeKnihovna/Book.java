@@ -8,7 +8,7 @@ public class Book {
 		private LocalDate releaseDate;	
 		private Boolean borrowed=false;
 		static int staticID=0;
-		private int ID;
+		private final int ID;
 		
 		
 		public Book(String name, String autor, LocalDate releaseDate) {
