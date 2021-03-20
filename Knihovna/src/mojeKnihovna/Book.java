@@ -1,8 +1,9 @@
 package mojeKnihovna;
-
 import java.time.LocalDate;
-import java.util.Scanner;
+
 public class Book {
+		SingleScanner scanner = SingleScanner.getInstanceOfScanner();
+	
 		private String name;
 		private String autor;
 		private LocalDate releaseDate;	
@@ -26,8 +27,8 @@ public class Book {
 			}
 			else {
 				System.out.println("!!!!! KNIHA JE PUJÈENA !!!!!\n---->Stiskni ENTER<----");
-				Scanner scanner=new Scanner(System.in);
-				scanner.nextLine();			
+				
+				scanner.readLine();			
 			}			
 		}
 		
@@ -38,8 +39,7 @@ public class Book {
 			}
 			else {
 				System.out.println("!!!!! KNIHA JE VRÁCENA !!!!!\n---->Stiskni ENTER<----");
-				Scanner scanner=new Scanner(System.in);
-				scanner.nextLine();				
+				scanner.readLine();		
 			}			
 		}
 			

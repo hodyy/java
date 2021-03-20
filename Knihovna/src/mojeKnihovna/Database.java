@@ -1,10 +1,10 @@
 package mojeKnihovna;
 import java.util.ArrayList;
-import java.util.Scanner;
+
 
 
 public class Database {
-
+	SingleScanner scanner = SingleScanner.getInstanceOfScanner();
 	ArrayList <Book> bookDatabase;
 	
 	public Database() {
@@ -14,11 +14,11 @@ public class Database {
 	
 	public void showDatabase() {
 		System.out.println("\n______________AKTUÁLNÍ DATABÁZE KNIH______________\n");
-		int index=0;
+
 		for(Book b: bookDatabase) {
 			
 			System.out.println(b);
-			index++;
+			
 		}
 		System.out.println("__________________________________________________\n");
 		
@@ -41,8 +41,8 @@ public class Database {
 		}
 			
 			System.out.println("\"!!!!! ID NENI V DATABAZI  !!!!!\n---->Stiskni ENTER<----\"");
-			Scanner scanner=new Scanner(System.in);
-			scanner.nextLine();		
+			
+			scanner.readLine();
 	}
 	
 	
@@ -56,8 +56,7 @@ public class Database {
 		}	
 		
 			System.out.println("\"!!!!! ID NENI V DATABAZI  !!!!!\n---->Stiskni ENTER<----\"");
-			Scanner scanner=new Scanner(System.in);
-			scanner.nextLine();				
+			scanner.readLine();		
 	}	
 	
 	
@@ -74,8 +73,7 @@ public class Database {
 		}
 			
 			System.out.println("\"!!!!! ID NENI V DATABAZI  !!!!!\n---->Stiskni ENTER<----\"");
-			Scanner scanner=new Scanner(System.in);
-			scanner.nextLine();					
+			scanner.readLine();				
 	}
 		
 					
