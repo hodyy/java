@@ -2,9 +2,11 @@ package mojeKnihovna;
 import java.io.IOException;
 
 
+
 public class Library {
 
 	public static void main(String[] args) throws IOException {
+		
 		
 		SingleScanner scanner = SingleScanner.getInstanceOfScanner();
 		User user = null;
@@ -33,7 +35,8 @@ public class Library {
 		Database database=new Database();
 		
 		MyFileReader reader = new MyFileReader();
-		reader.readFile("C:\\projects_java\\Knihovna\\dataFile.txt", database);
+		File file = new File("dataFile.txt");	
+		reader.readFile(file.getFilepath(), database);
 		
 		//Book book1= new Book("Staøec a moøe", "Ernest Hemingway", LocalDate.of(1999, 02, 15) );
 				
@@ -83,4 +86,6 @@ public class Library {
 		
 	
 	}
+
+
 }
