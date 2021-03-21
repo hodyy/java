@@ -1,10 +1,13 @@
 package mojeKnihovna;
-import java.time.LocalDate;
+import java.io.IOException;
 
 
 public class Library {
 
-	public static void main(String[] args) {
+	public static void main(String[] args) throws IOException {
+		MyFileReader reader = new MyFileReader();
+		
+		
 		SingleScanner scanner = SingleScanner.getInstanceOfScanner();
 		User user = null;
 		Boolean logged=false;
@@ -30,11 +33,9 @@ public class Library {
 		}		
 		
 		Database database=new Database();
-		Book book1= new Book("Staøec a moøe", "Ernest Hemingway", LocalDate.of(2016, 02, 15) );
-		Book book2= new Book("Kytice ", "Karel Jaromir Erben", LocalDate.now() );
+		reader.readFile("C:\\projects_java\\Knihovna\\dataFile.txt", database);
+		//Book book1= new Book("Staøec a moøe", "Ernest Hemingway", LocalDate.of(1999, 02, 15) );
 				
-		database.addBookToDatabase(book1);
-		database.addBookToDatabase(book2);		
 		database.showDatabase();
 		boolean end=false;
 		while (!end) {
