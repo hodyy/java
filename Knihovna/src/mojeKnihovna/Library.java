@@ -37,8 +37,6 @@ public class Library {
 		MyFileReader reader = new MyFileReader();
 		File file = new File("dataFile.txt");	
 		reader.readFile(file.getFilepath(), database);
-		
-		//Book book1= new Book("Staøec a moøe", "Ernest Hemingway", LocalDate.of(1999, 02, 15) );
 				
 		database.showDatabase();
 		boolean end=false;
