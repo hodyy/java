@@ -1,7 +1,5 @@
 package mojeKnihovna;
 
-import java.time.LocalDate;
-
 public abstract class User {
 	SingleScanner scanner = SingleScanner.getInstanceOfScanner();
 	
