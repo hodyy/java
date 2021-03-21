@@ -15,18 +15,14 @@ public class MyFileReader {
 	public void readFile(String filePath, Database database) throws IOException {
 		     
 		     reader = new BufferedReader(new FileReader(filePath,StandardCharsets.UTF_8));
-		     String currentLine=" ";
+		     String currentLine=reader.readLine();
 		     String [] record;
 		     String [] date;
 		     int year;
 		     int month;
 		     int day;
-		     
 		     while (currentLine!=null) {
 		    	 
-		    	currentLine=reader.readLine();
-		    	
-		    	 if(currentLine!=null){
 		    	record =currentLine.split(";");
 		    	date=record[2].split("-");
 		    	
@@ -36,7 +32,9 @@ public class MyFileReader {
 		    	
 		    	Book currentBook = new Book(record[0],record[1],LocalDate.of(year, month, day));	
 		    	database.addBookToDatabase(currentBook);
-		    	 }
+		    	currentLine=reader.readLine();
+		    	 
+		    	 
 		     }
 		   	 
 		     reader.close();
