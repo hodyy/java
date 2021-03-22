@@ -4,48 +4,42 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
-import java.time.LocalDate;
+import java.util.Scanner;
 
 public class MyFileReader {
-
-	private BufferedReader reader;
+private BufferedReader readerRows;
+private BufferedReader readerRecords;
 	
-	public void MyFilerReader() {}
+	public void MyFilerReader2() {}
 		
-	public void readFile(String filePath, Database database) throws IOException {
+	public String [] readFile(String filePath) throws IOException {
 		     
-		     reader = new BufferedReader(new FileReader(filePath,StandardCharsets.UTF_8));
-		     String currentLine=reader.readLine();
-		     String [] record;
-		     String [] date;
-		     int year;
-		     int month;
-		     int day;
-		     while (currentLine!=null) {
-		    	 
-		    	record =currentLine.split(";");
-		    	date=record[2].split("-");
+		     readerRows = new BufferedReader(new FileReader(filePath,StandardCharsets.UTF_8));
+		     readerRecords = new BufferedReader(new FileReader(filePath,StandardCharsets.UTF_8));
+		     Scanner sc = new Scanner(filePath);
+		     int count=0;
+		     
+		     while (readerRows.readLine()!=null) {
 		    	
-		    	year=Integer.parseInt(date[0]);
-		    	month=Integer.parseInt(date[1]);
-		    	day=Integer.parseInt(date[2]);
-		    	
-		    	Book currentBook = new Book(record[0],record[1],LocalDate.of(year, month, day));	
-		    	database.addBookToDatabase(currentBook);
-		    	currentLine=reader.readLine();
-		    	 
-		    	 
+		    	 count++;
 		     }
-		   	 
-		     reader.close();
-		   
-		
-		
-	}
-
-
-	}
+		     readerRows.close();
+		     sc.close();
+		     
+		     String [] records = new String[count];
+		     int index=0;
+		     String currentLine=" ";
+		     
+		     while (currentLine!=null) {
+		    	 currentLine=readerRecords.readLine();
+		    	 if (currentLine!=null){
+		    	 records[index]=currentLine;
+		    	 index++;
+		    	 }
+		     }
+		     
+		     readerRecords.close();
+		   	 return records;
+    }
 	
-	
-	
-
+}

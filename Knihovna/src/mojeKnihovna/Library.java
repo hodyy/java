@@ -36,7 +36,9 @@ public class Library {
 		
 		MyFileReader reader = new MyFileReader();
 		File file = new File("dataFile.txt");	
-		reader.readFile(file.getFilepath(), database);
+		Parser parser=new Parser();
+
+		parser.parseAndSaveToDatabase(reader.readFile(file.getFilepath()), database);
 				
 		database.showDatabase();
 		boolean end=false;
