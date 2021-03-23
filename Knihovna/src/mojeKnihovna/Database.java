@@ -78,7 +78,7 @@ public class Database {
 	
 	
 	public ArrayList <Book> getBooks(){
-		System.out.println(bookDatabase.size());
+	
 		return bookDatabase;
 	}
 	

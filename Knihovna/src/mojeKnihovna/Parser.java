@@ -9,7 +9,10 @@ public class Parser {
 	public Parser() {}
 	
 	public void parseAndSaveToDatabase(ArrayList <String> booksRecords, Database database) {
-		
+		System.out.println(booksRecords.size());
+		if(booksRecords.size()==0) {
+			return;
+		}
 		
 		String [] record;
 		int year;
@@ -34,8 +37,7 @@ public class Parser {
 		public ArrayList <String> parseBeforeWrite(ArrayList <Book> booksDatabase) {
 			ArrayList <String> records = new ArrayList<>();
 			if(booksDatabase.size()==0) {
-				Book empty = new Book("empty","empty",LocalDate.of(11, 11,11));
-				booksDatabase.add(empty);
+				return records;
 				}
 			
 			for (Book b: booksDatabase) {

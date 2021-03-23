@@ -31,16 +31,13 @@ private FileWriter writeRecords;
 	public void writeToFile(ArrayList<String> books, String filePath) throws IOException {
 	     
 		writeRecords = new FileWriter(filePath);
-		
-		String empty = "empty;empty;0011-11-11";
-		
-		if (books.get(0)==empty) {
-			writeRecords.write(" ");
-	    	 writeRecords.close();
-	    	 return;
+		System.out.println(books.size());
+		if (books.size()==0) {
+			writeRecords.write("");
+			writeRecords.close();
 		}
 		else {
-	
+		
 	     for (String r: books) {
 	    
 	     writeRecords.write(r); 	  
@@ -48,7 +45,7 @@ private FileWriter writeRecords;
 	     }
 	    
 	     writeRecords.close();
-	     }
+		}
 	     
 		}
 	     
