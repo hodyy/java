@@ -34,11 +34,11 @@ public class Library {
 		
 		Database database=new Database();
 		
-		MyFileReader reader = new MyFileReader();
+		FileReaderAndWriter readerAndWriter = new FileReaderAndWriter();
 		File file = new File("dataFile.txt");	
 		Parser parser=new Parser();
 
-		parser.parseAndSaveToDatabase(reader.readFile(file.getFilepath()), database);
+		parser.parseAndSaveToDatabase(readerAndWriter.readFile(file.getFilepath()), database);
 				
 		database.showDatabase();
 		boolean end=false;
@@ -65,6 +65,9 @@ public class Library {
 			break;
 			
 		case "e":
+			
+			readerAndWriter.writeToFile(parser.parseBeforeWrite(database.getBooks()), file.getFilepath());
+			
 			end=true;
 			break;
 		

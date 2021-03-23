@@ -55,5 +55,18 @@ public class Book {
 			}
 								
 			return "ID:"+ID+"\n"+"Kniha: "+name+"\nAutor: "+ autor+"\nDatum vydání: "+releaseDate+"\nPujèeno: "+borrowedString+ "\n------------";		
-		}				
+		}			
+		
+		public String getName() {
+			return name;
+		}
+		
+		public String getAutor() {
+			return autor;		
+		}
+		
+		public LocalDate getDate() {
+			return releaseDate;		
+		}
+		
 }

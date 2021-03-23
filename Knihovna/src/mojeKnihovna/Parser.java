@@ -29,6 +29,30 @@ public class Parser {
 		
 		
 		
+		
 	}
+		public ArrayList <String> parseBeforeWrite(ArrayList <Book> booksDatabase) {
+			ArrayList <String> records = new ArrayList<>();
+			if(booksDatabase.size()==0) {
+				Book empty = new Book("empty","empty",LocalDate.of(11, 11,11));
+				booksDatabase.add(empty);
+				}
+			
+			for (Book b: booksDatabase) {
+				String name=b.getName();
+				String autor=b.getAutor();
+				String date= b.getDate().toString();
+				String record=name+";"+autor+";"+date;
+				records.add(record);
+							
+				
+			}
+			
+			return records;
+			
+		
+		}
+	
+	
 	
 }

@@ -75,6 +75,13 @@ public class Database {
 			System.out.println("\"!!!!! ID NENI V DATABAZI  !!!!!\n---->Stiskni ENTER<----\"");
 			scanner.readLine();				
 	}
+	
+	
+	public ArrayList <Book> getBooks(){
+		System.out.println(bookDatabase.size());
+		return bookDatabase;
+	}
+	
 		
 					
 }
