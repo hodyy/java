@@ -9,7 +9,7 @@ public class Parser {
 	public Parser() {}
 	
 	public void parseAndSaveToDatabase(ArrayList <String> booksRecords, Database database) {
-		System.out.println(booksRecords.size());
+		
 		if(booksRecords.size()==0) {
 			return;
 		}

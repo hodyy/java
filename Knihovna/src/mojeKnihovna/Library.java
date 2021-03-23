@@ -85,7 +85,7 @@ public class Library {
 		}
 		
 	scanner.closeScanner();	
-		
+	System.out.println("KONEC PROGRAMU");	
 		
 	
 	}

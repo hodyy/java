@@ -31,7 +31,6 @@ private FileWriter writeRecords;
 	public void writeToFile(ArrayList<String> books, String filePath) throws IOException {
 	     
 		writeRecords = new FileWriter(filePath);
-		System.out.println(books.size());
 		if (books.size()==0) {
 			writeRecords.write("");
 			writeRecords.close();
