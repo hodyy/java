@@ -1,6 +1,5 @@
 package mojeKnihovna;
-
-import java.time.LocalDate;
+import java.util.ArrayList;
 
 public class Admin extends User {
 	
@@ -19,14 +18,15 @@ public class Admin extends User {
 	@Override
 	public void addBook(Database database) {
 		System.out.println("Zadej Název knihy");
-		String name = scanner.readLine();
+		String newBook = scanner.readLine();
 		System.out.println("Zadej Jmeno autora");
-		String autor = scanner.readLine();
+		newBook=newBook+";"+ scanner.readLine();
 		System.out.println("Zadej datum vydání ve tvaru yyyy-mm-dd");
-		String date = scanner.readLine();
-		
-		Book book=new Book(name, autor,LocalDate.parse(date));
-		database.addBookToDatabase(book);
+		newBook=newBook+";"+ scanner.readLine();
+		ArrayList <String> record = new ArrayList <String> ();
+		record.add(newBook);
+		Parser parser =new Parser();
+		parser.parseAndSaveToDatabase(record, database);
 		
 		database.showDatabase();
 	
