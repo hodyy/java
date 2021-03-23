@@ -4,42 +4,27 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
-import java.util.Scanner;
+import java.util.ArrayList;
 
 public class MyFileReader {
 private BufferedReader readerRows;
-private BufferedReader readerRecords;
 	
-	public void MyFilerReader2() {}
+	public  MyFileReader() {}
 		
-	public String [] readFile(String filePath) throws IOException {
+	public ArrayList<String> readFile(String filePath) throws IOException {
 		     
 		     readerRows = new BufferedReader(new FileReader(filePath,StandardCharsets.UTF_8));
-		     readerRecords = new BufferedReader(new FileReader(filePath,StandardCharsets.UTF_8));
-		     Scanner sc = new Scanner(filePath);
-		     int count=0;
 		     
-		     while (readerRows.readLine()!=null) {
-		    	
-		    	 count++;
+		     ArrayList <String> records = new ArrayList<String>();
+		     String currentRecord=readerRows.readLine();
+		     while (currentRecord!=null) {
+		    	records.add(currentRecord);
+		    	currentRecord=readerRows.readLine();
 		     }
 		     readerRows.close();
-		     sc.close();
+		     return records;
 		     
-		     String [] records = new String[count];
-		     int index=0;
-		     String currentLine=" ";
-		     
-		     while (currentLine!=null) {
-		    	 currentLine=readerRecords.readLine();
-		    	 if (currentLine!=null){
-		    	 records[index]=currentLine;
-		    	 index++;
-		    	 }
-		     }
-		     
-		     readerRecords.close();
-		   	 return records;
+		    
     }
 	
 }

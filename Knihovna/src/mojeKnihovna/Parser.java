@@ -1,23 +1,24 @@
 package mojeKnihovna;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 
 public class Parser {
 	String [] booksRecords;
 	
 	public Parser() {}
 	
-	public void parseAndSaveToDatabase(String [] booksRecords, Database database) {
+	public void parseAndSaveToDatabase(ArrayList <String> booksRecords, Database database) {
 		
-		int lenght = booksRecords.length;
+		
 		String [] record;
 		int year;
 	    int month;
 	    int day;
 	    String [] date;
 	    
-		for (int i=0;i<lenght;i++) {
-			record = booksRecords[i].split(";");
+		for (String r: booksRecords) {
+			record = r.split(";");
 			date=record[2].split("-");
 			year=Integer.parseInt(date[0]);
 	    	month=Integer.parseInt(date[1]);
