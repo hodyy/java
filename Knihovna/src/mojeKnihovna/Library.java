@@ -5,7 +5,7 @@ import java.io.IOException;
 
 public class Library {
 
-	public static void main(String[] args) throws IOException {
+	public static void main(String[] args)  {
 		
 		
 		SingleScanner scanner = SingleScanner.getInstanceOfScanner();
@@ -37,9 +37,19 @@ public class Library {
 		FileReaderAndWriter readerAndWriter = new FileReaderAndWriter();
 		File file = new File("dataFile.txt");	
 		Parser parser=new Parser();
-
+		
+		try {
+			
 		parser.parseAndSaveToDatabase(readerAndWriter.readFile(file.getFilepath()), database);
-				
+		
+		}
+		catch (IOException e) {
+			
+			System.out.println("Problem pøi ètení souboru -> Konec programu ");	
+			System.exit(0);
+			
+			}
+		
 		database.showDatabase();
 		boolean end=false;
 		while (!end) {
@@ -65,9 +75,12 @@ public class Library {
 			break;
 			
 		case "e":
-			
+			try {
 			readerAndWriter.writeToFile(parser.parseBeforeWrite(database.getBooks()), file.getFilepath());
-			
+			}
+			catch (IOException e) {
+				System.out.println("Problem pøi zapisu dat!");	
+				}
 			end=true;
 			break;
 		
@@ -85,7 +98,7 @@ public class Library {
 		}
 		
 	scanner.closeScanner();	
-	System.out.println("KONEC PROGRAMU");	
+	System.out.println("----------KONEC PROGRAMU--------------");	
 		
 	
 	}

@@ -44,7 +44,7 @@ public class Parser {
 				String name=b.getName();
 				String autor=b.getAutor();
 				String date= b.getDate().toString();
-				String record=name+";"+autor+";"+date;
+				String record=name+";"+autor+";"+date+"\n";
 				records.add(record);
 							
 				
