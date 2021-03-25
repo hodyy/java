@@ -17,22 +17,22 @@ public class Admin extends User {
 	
 	@Override
 	public void addBook(Database database) {
-		StringBuilder inputString = new StringBuilder(";;;");
 		
 		System.out.println("Zadej Název knihy");
-
-		inputString.insert(0,scanner.readLine());
-		
+		StringBuilder inputString = new StringBuilder(scanner.readLine());
+		inputString.append(";");	
 		System.out.println("Zadej Jmeno autora");
-		inputString.insert(inputString.length()-2,scanner.readLine());
+		inputString.append(scanner.readLine());
+		inputString.append(";");
 
 		System.out.println("Zadej datum vydání ve tvaru yyyy-mm-dd");
-		inputString.insert(inputString.length()-1,scanner.readLine());
-
+		inputString.append(scanner.readLine());
+		inputString.append(";");
 		String newBook = inputString.toString();
 		
 		ArrayList <String> record = new ArrayList <String> ();
 		record.add(newBook);
+		
 		Parser parser =new Parser();
 		parser.parseAndSaveToDatabase(record, database);
 		
