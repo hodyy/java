@@ -9,13 +9,9 @@ public class RecordBuilder {
 		private String name;
 		private String autor;
 		private String date;
-		private Database database;
+	
 		
-		public RecordBuilder(Database database) {	
-			this.database=database;
-			
-			
-		}
+		public RecordBuilder() {}
 		
 		public void addName(String name) {
 			this.name=addSemicolon(name);	
@@ -38,8 +34,7 @@ public class RecordBuilder {
 			
 			if(error==false) {
 			this.date=addSemicolon(date);
-			processRecord();
-			
+		
 			return true;
 			}
 			else {
@@ -53,17 +48,18 @@ public class RecordBuilder {
 			return record;
 		}
 		
-		private String getRecord () {
-			return name+autor+date;		
-		}
-		
-		private void processRecord() {
-			
+		public ArrayList <String> getFullRecord () {
 			ArrayList <String> record = new ArrayList <String> ();
 			record.add(getRecord());
+			return record;
+		}
+		
+		private String getRecord() {
 			
-			Parser parser =new Parser();
-			parser.parseAndSaveToDatabase(record, database);
+			return name + autor +date;
+			
+			
+			
 			
 		}
 		

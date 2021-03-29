@@ -16,7 +16,7 @@ public class Admin extends User {
 	@Override
 	public void addBook(Database database) {
 		
-		RecordBuilder stringBuider=new RecordBuilder(database);
+		RecordBuilder stringBuider=new RecordBuilder();
 		
 		System.out.println("Zadej Název knihy");
 		stringBuider.addName(scanner.readLine());		
@@ -34,6 +34,9 @@ public class Admin extends User {
 			correct=stringBuider.addDate(scanner.readLine());	
 		}
 
+		
+		Parser parser =new Parser();
+		parser.parseAndSaveToDatabase(stringBuider.getFullRecord(), database);
 		
 		database.showDatabase();
 	
