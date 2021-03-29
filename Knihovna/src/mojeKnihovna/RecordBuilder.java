@@ -17,19 +17,12 @@ public class RecordBuilder {
 			
 		}
 		
-		
-		
-		
 		public void addName(String name) {
-			this.name=addSemicolon(name);
-			
-			
+			this.name=addSemicolon(name);	
 		}
 		
 		public void addAutor(String autor) {
 			this.autor=addSemicolon(autor);
-			
-			
 		}
 		
 		public boolean addDate(String date) {
@@ -39,14 +32,14 @@ public class RecordBuilder {
 			try {
 				formatter.parse(date);
 				
-			} catch (ParseException e) 
-				{		
+			} catch (ParseException e) {		
 				error=true;
 				}
 			
 			if(error==false) {
 			this.date=addSemicolon(date);
 			processRecord();
+			
 			return true;
 			}
 			else {
@@ -55,12 +48,11 @@ public class RecordBuilder {
 		}
 		
 		
-		private String addSemicolon(String record) {
-			
+		private String addSemicolon(String record) {	
 			record=record+";";
 			return record;
-			
 		}
+		
 		private String getRecord () {
 			return name+autor+date;		
 		}

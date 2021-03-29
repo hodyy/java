@@ -1,11 +1,4 @@
 package mojeKnihovna;
-
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-
-
-
 public class Admin extends User {
 	
 	
@@ -35,7 +28,8 @@ public class Admin extends User {
 		boolean correct=stringBuider.addDate(scanner.readLine());
 		
 		while(!correct) {
-			System.out.println("Špatnì zadaný datum!");
+			System.out.println("!!!!! ŠPATNÌ ZADANÝ FORMAT DATUMU  !!!!!\n---->Stiskni ENTER<----");
+			scanner.readLine();
 			System.out.println("Zadej datum vydání ve tvaru yyyy-mm-dd");
 			correct=stringBuider.addDate(scanner.readLine());	
 		}
