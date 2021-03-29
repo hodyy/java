@@ -23,7 +23,7 @@ public class Admin extends User {
 	@Override
 	public void addBook(Database database) {
 		
-		RecordBuilder stringBuider=new RecordBuilder();
+		RecordBuilder stringBuider=new RecordBuilder(database);
 		
 		System.out.println("Zadej Název knihy");
 		stringBuider.addName(scanner.readLine());		
@@ -39,13 +39,7 @@ public class Admin extends User {
 			System.out.println("Zadej datum vydání ve tvaru yyyy-mm-dd");
 			correct=stringBuider.addDate(scanner.readLine());	
 		}
-		
-		
-		ArrayList <String> record = new ArrayList <String> ();
-		record.add(stringBuider.getRecord());
-		
-		Parser parser =new Parser();
-		parser.parseAndSaveToDatabase(record, database);
+
 		
 		database.showDatabase();
 	
