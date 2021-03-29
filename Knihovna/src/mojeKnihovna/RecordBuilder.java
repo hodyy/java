@@ -1,5 +1,7 @@
 package mojeKnihovna;
 
+import java.text.SimpleDateFormat;
+
 public class RecordBuilder {
 		private String name;
 		private String autor;
