@@ -1,5 +1,7 @@
 package mojeKnihovna;
 
+
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 
 public class RecordBuilder {
@@ -21,9 +23,25 @@ public class RecordBuilder {
 			
 		}
 		
-		public void addDate(String date) {
-			this.date=addSemicolon(date);
+		public boolean addDate(String date) {
+			SimpleDateFormat formatter=new SimpleDateFormat("yyyy-MM-dd"); 
+			boolean error=false;
 			
+			try {
+				formatter.parse(date);
+				
+			} catch (ParseException e) 
+				{		
+				error=true;
+				}
+			
+			if(error==false) {
+			this.date=addSemicolon(date);
+			return true;
+			}
+			else {
+				return false;
+			}
 		}
 		
 		

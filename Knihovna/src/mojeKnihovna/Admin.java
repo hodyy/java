@@ -1,10 +1,9 @@
 package mojeKnihovna;
-import java.io.IOException;
+
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
- 
+
 
 
 public class Admin extends User {
@@ -23,7 +22,7 @@ public class Admin extends User {
 	
 	@Override
 	public void addBook(Database database) {
-		SimpleDateFormat formatter=new SimpleDateFormat("yyyy-MM-dd"); 
+		
 		RecordBuilder stringBuider=new RecordBuilder();
 		
 		System.out.println("Zadej Název knihy");
@@ -32,37 +31,15 @@ public class Admin extends User {
 		System.out.println("Zadej Jmeno autora");
 		stringBuider.addAutor(scanner.readLine());
 	
-		String date;
-		boolean correct=false;
-		boolean error;
-		
-		while (!correct) {
-		error=false;	
-		
 		System.out.println("Zadej datum vydání ve tvaru yyyy-mm-dd");
-		date = scanner.readLine();
+		boolean correct=stringBuider.addDate(scanner.readLine());
 		
-		
-		try {
-			formatter.parse(date);
-			
-		} catch (ParseException e) 
-			{		
-			System.out.println("\n!!!!! ŠPATNÌ ZADANÝ FORMAT DATUMU  !!!!!\n---->Stiskni ENTER<----");
-			scanner.readLine();
-			error=true;
-			}
-		
-		if (error==false)
-		{
-			stringBuider.addDate(date);
-			correct=true;	
+		while(!correct) {
+			System.out.println("Špatnì zadaný datum!");
+			System.out.println("Zadej datum vydání ve tvaru yyyy-mm-dd");
+			correct=stringBuider.addDate(scanner.readLine());	
 		}
-
 		
-		}
-
-		System.out.println(stringBuider.getRecord());
 		
 		ArrayList <String> record = new ArrayList <String> ();
 		record.add(stringBuider.getRecord());
