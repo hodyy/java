@@ -27,6 +27,8 @@ public class Parser {
 	    	month=Integer.parseInt(date[1]);
 	    	day=Integer.parseInt(date[2]);
 	    	Book currentBook = new Book(record[0],record[1],LocalDate.of(year, month, day));	
+	    	currentBook.setID(Integer.parseInt(record[3]));
+	    	currentBook.setStaticID(Integer.parseInt(record[3]));
 	    	database.addBookToDatabase(currentBook);
 		}
 		
@@ -44,7 +46,8 @@ public class Parser {
 				String name=b.getName();
 				String autor=b.getAutor();
 				String date= b.getDate().toString();
-				String record=name+";"+autor+";"+date+"\n";
+				int ID=b.getID();
+				String record=name+";"+autor+";"+date+";"+ID+"\n";
 				records.add(record);
 							
 				

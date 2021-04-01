@@ -8,8 +8,8 @@ public class Book {
 		private String autor;
 		private LocalDate releaseDate;	
 		private Boolean borrowed=false;
-		static int staticID=0;
-		private final int ID;
+		static int staticID=1;
+		private  int ID;
 		
 		
 		public Book(String name, String autor, LocalDate releaseDate) {
@@ -69,4 +69,14 @@ public class Book {
 			return releaseDate;		
 		}
 		
+		public void setID(int ID) {
+			this.ID=ID;
+		}
+		public void setStaticID(int lastID) {
+			this.staticID=ID+1;
+		}
+		static int getStaticID() {
+			return staticID;
+			
+		}
 }

@@ -20,6 +20,7 @@ public class Library {
 			user=new Admin();
 			logged=true;
 			break;
+			
 		case "reader":
 			user=new Reader();
 			logged=true;
@@ -61,14 +62,14 @@ public class Library {
 		case "a":
 			user.addBook(database);
 			break;
+			
 		case "d":
 			user.deleteBook(database);
-			break;
+			break;	
 			
 		case "b":	
 			user.borrowBook(database);
-			break;
-			
+			break;	
 			
 		case "r": 
 			user.returnBook(database);

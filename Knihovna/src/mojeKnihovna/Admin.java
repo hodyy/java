@@ -25,21 +25,21 @@ public class Admin extends User {
 		stringBuider.addAutor(scanner.readLine());
 	
 		System.out.println("Zadej datum vydání ve tvaru yyyy-mm-dd");
-		boolean correct=stringBuider.addDate(scanner.readLine());
 		
-		while(!correct) {
+		while(!stringBuider.addDate(scanner.readLine())) {
 			System.out.println("!!!!! ŠPATNÌ ZADANÝ FORMAT DATUMU  !!!!!\n---->Stiskni ENTER<----");
 			scanner.readLine();
 			System.out.println("Zadej datum vydání ve tvaru yyyy-mm-dd");
-			correct=stringBuider.addDate(scanner.readLine());	
+			
 		}
-
+		
+		String ID=Integer.toString(Book.getStaticID());
+		stringBuider.addID(ID);
 		
 		Parser parser =new Parser();
 		parser.parseAndSaveToDatabase(stringBuider.getFullRecord(), database);
 		
 		database.showDatabase();
-	
 	}
 		
 	
