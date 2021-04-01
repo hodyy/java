@@ -9,7 +9,7 @@ public class RecordBuilder {
 		private String name;
 		private String autor;
 		private String date;
-		private String ID;
+
 	
 		
 		public RecordBuilder() {}
@@ -43,15 +43,8 @@ public class RecordBuilder {
 			}
 		}
 		
-		public void addID(String ID) {
-			this.ID=addSemicolon(ID);
 			
-		}
-			
-			
-			
-		
-		
+					
 		private String addSemicolon(String record) {	
 			record=record+";";
 			return record;
@@ -67,7 +60,7 @@ public class RecordBuilder {
 		}
 		
 		private String getRecord() {
-			
+			String ID=addSemicolon(Integer.toString(Book.getStaticID()));
 			return name + autor +date + ID;
 			
 			

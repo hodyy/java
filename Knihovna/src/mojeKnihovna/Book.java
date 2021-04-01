@@ -26,11 +26,14 @@ public class Book {
 				this.borrowed=true;
 			}
 			else {
-				System.out.println("!!!!! KNIHA JE PUJÈENA !!!!!\n---->Stiskni ENTER<----");
+				System.out.println("!!!!! KNIHA JE PUJÄŒENA !!!!!\n---->Stiskni ENTER<----");
 				
 				scanner.readLine();			
 			}			
 		}
+		
+		
+		
 		
 		
 		public void returnBook() {
@@ -38,7 +41,7 @@ public class Book {
 				this.borrowed=false;
 			}
 			else {
-				System.out.println("!!!!! KNIHA JE VRÁCENA !!!!!\n---->Stiskni ENTER<----");
+				System.out.println("!!!!! KNIHA JE VRÃCENA !!!!!\n---->Stiskni ENTER<----");
 				scanner.readLine();		
 			}			
 		}
@@ -54,7 +57,7 @@ public class Book {
 				borrowedString="ANO";				
 			}
 								
-			return "ID:"+ID+"\n"+"Kniha: "+name+"\nAutor: "+ autor+"\nDatum vydání: "+releaseDate+"\nPujèeno: "+borrowedString+ "\n------------";		
+			return "ID:"+ID+"\n"+"Kniha: "+name+"\nAutor: "+ autor+"\nDatum vydÃ¡nÃ­: "+releaseDate+"\nPujÄeno: "+borrowedString+ "\n------------";		
 		}			
 		
 		public String getName() {
@@ -70,10 +73,15 @@ public class Book {
 		}
 		
 		public void setID(int ID) {
+			
 			this.ID=ID;
+			if (ID>staticID) {
+				setStaticID(ID);	
+			}
+			
 		}
-		public void setStaticID(int lastID) {
-			this.staticID=ID+1;
+		private void setStaticID(int lastID) {
+			this.staticID=ID;
 		}
 		static int getStaticID() {
 			return staticID;

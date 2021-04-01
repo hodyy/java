@@ -6,10 +6,9 @@ public class Admin extends User {
 	
 	@Override
 	public void deleteBook(Database database) {
-		System.out.println("Zadej ID knihy, která se má odebrat:");	
+		System.out.println("Zadej ID knihy, kterÃ¡ se mÃ¡ odebrat:");	
 		database.deleteBookFromDatabase(scanner.readInt());
-		database.showDatabase();
-		// NEVIM PROÈ ALE MUSÍ TU BÝT TOTO JINAK BERE VSTUP PRO DALŠÍ OPERACI. PROÈ?????
+		database.showDatabase();	
 		scanner.readLine();
 	}
 	
@@ -18,23 +17,20 @@ public class Admin extends User {
 		
 		RecordBuilder stringBuider=new RecordBuilder();
 		
-		System.out.println("Zadej Název knihy");
+		System.out.println("Zadej NÃ¡zev knihy");
 		stringBuider.addName(scanner.readLine());		
 
 		System.out.println("Zadej Jmeno autora");
 		stringBuider.addAutor(scanner.readLine());
 	
-		System.out.println("Zadej datum vydání ve tvaru yyyy-mm-dd");
+		System.out.println("Zadej datum vydÃ¡nÃ­ ve tvaru yyyy-mm-dd");
 		
 		while(!stringBuider.addDate(scanner.readLine())) {
-			System.out.println("!!!!! ŠPATNÌ ZADANÝ FORMAT DATUMU  !!!!!\n---->Stiskni ENTER<----");
+			System.out.println("!!!!! Å PATNÄš ZADANÃ FORMAT DATUMU  !!!!!\n---->Stiskni ENTER<----");
 			scanner.readLine();
-			System.out.println("Zadej datum vydání ve tvaru yyyy-mm-dd");
+			System.out.println("Zadej datum vydÃ¡nÃ­ ve tvaru yyyy-mm-dd");
 			
 		}
-		
-		String ID=Integer.toString(Book.getStaticID());
-		stringBuider.addID(ID);
 		
 		Parser parser =new Parser();
 		parser.parseAndSaveToDatabase(stringBuider.getFullRecord(), database);
