@@ -9,7 +9,7 @@ public class Parser {
 	public Parser() {}
 	
 	public void parseAndSaveToDatabase(ArrayList <String> booksRecords, Database database) {
-		
+		System.out.println(booksRecords.size());
 		if(booksRecords.size()==0) {
 			return;
 		}
@@ -27,7 +27,6 @@ public class Parser {
 	    	month=Integer.parseInt(date[1]);
 	    	day=Integer.parseInt(date[2]);
 	    	Book currentBook = new Book(record[0],record[1],LocalDate.of(year, month, day));	
-	    	if(Integer.parseInt(record[3])>Book.getStaticID())
 	    	currentBook.setID(Integer.parseInt(record[3]));
 	    	database.addBookToDatabase(currentBook);
 		}

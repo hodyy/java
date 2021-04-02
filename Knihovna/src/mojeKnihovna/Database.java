@@ -1,15 +1,17 @@
 package mojeKnihovna;
+import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashMap;
 
 
 
 public class Database {
 	SingleScanner scanner = SingleScanner.getInstanceOfScanner();
 	ArrayList <Book> bookDatabase;
-	
+	HashMap<Integer, Book> bookIndexes;
 	public Database() {
 		bookDatabase=new ArrayList<Book>();
-		
+		bookIndexes=new HashMap<>();
 	}
 	
 	public void showDatabase() {
@@ -27,37 +29,37 @@ public class Database {
 		
 	public void addBookToDatabase(Book newBook) {
 		bookDatabase.add(newBook);
+		bookIndexes.put(newBook.getID(), newBook);
+		
 		
 	}
 	
 	public void borrowBook(int ID) {
 		
-		for (Book b: bookDatabase) {
-			if(b.getID()==ID) {
-				b.borrow();		
-				
-				return;
-			}
+			Book currentBook = bookIndexes.get(ID);
+			if (currentBook!=null) {
+			
+				currentBook.borrow();
+				}
+			else{
+				System.out.println("\"!!!!! ID NENI V DATABAZI  !!!!!\n---->Stiskni ENTER<----\"");
+				scanner.readLine();	
 		}
-			
-			System.out.println("\"!!!!! ID NENI V DATABAZI  !!!!!\n---->Stiskni ENTER<----\"");
-			
-			scanner.readLine();
 	}
 	
 	
 	public void returnBook(int ID) {
-	
-		for (Book b: bookDatabase) {
-			if(b.getID()==ID) {
-				b.returnBook();					
-				return;
-			}
-		}	
 		
+		Book currentBook = bookIndexes.get(ID);
+		if (currentBook!=null) {
+
+			currentBook.returnBook();
+		}
+		else {
 			System.out.println("\"!!!!! ID NENI V DATABAZI  !!!!!\n---->Stiskni ENTER<----\"");
-			scanner.readLine();		
-	}	
+			scanner.readLine();	
+		}
+	}
 	
 	
 	public void deleteBookFromDatabase(int ID) {
@@ -67,7 +69,8 @@ public class Database {
 		for (Book b: bookDatabase) {
 			indexCounter++;
 			if(b.getID()==ID) {
-				bookDatabase.remove(indexCounter-1);	
+				bookDatabase.remove(indexCounter-1);
+				bookIndexes.remove(ID);
 				return;
 			}
 		}

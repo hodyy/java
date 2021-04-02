@@ -73,15 +73,17 @@ public class Book {
 		}
 		
 		public void setID(int ID) {
-			
-			this.ID=ID;
-			if (ID>staticID) {
-				setStaticID(ID);	
+				
+			  this.ID=ID;
+			if (ID>=staticID) {
+				
+				setStaticID(ID+1);
+				
 			}
 			
 		}
 		private void setStaticID(int lastID) {
-			this.staticID=ID;
+			this.staticID=ID+1;
 		}
 		static int getStaticID() {
 			return staticID;
