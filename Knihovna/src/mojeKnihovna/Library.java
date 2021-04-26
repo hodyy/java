@@ -1,5 +1,6 @@
 package mojeKnihovna;
-import java.io.IOException;
+
+import java.sql.SQLException;
 
 
 
@@ -33,56 +34,45 @@ public class Library {
 	                }
 		}		
 		
-		Database database=new Database();
+		Database database =new Database("root");
+		Display display=new Display();
 		
-		FileReaderAndWriter readerAndWriter = new FileReaderAndWriter();
-		File file = new File("dataFile.txt");	
-		Parser parser=new Parser();
-		
-		try {
-			
-		parser.parseAndSaveToDatabase(readerAndWriter.readFile(file.getFilepath()), database);
-		
-		}
-		catch (IOException e) {
-			
-			System.out.println("Problem pøi ètení souboru -> Konec programu ");	
-			System.exit(0);
-			
-			}
-		
-		database.showDatabase();
 		boolean end=false;
 		while (!end) {
+	
+			try {
+				display.showAllbooks(database.selectAllBooksFromDB());		
+			} catch (SQLException e) {		
+				System.out.println("chyba pøi vybìru dat z DB");	
+			}
 			
 		System.out.println("ZVOL OPERACI:\n\n1)Pøidat knihu - stiskni (a)\n2)Odebrat knihu - stiskni (d)\n3)Pujèit knihu: stiskni (b)\n4)Vratit knihu: stiskni (r)\n5)Ukonèit program: stiskni (e)");
 		
-		switch(scanner.readLine()) {
+		switch(scanner.readInt()) {
 		
-		case "a":
+		case 1:
+			scanner.readLine();
 			user.addBook(database);
 			break;
 			
-		case "d":
-			user.deleteBook(database);
+		case 2:
+			user.deleteBook(database); 
 			break;	
 			
-		case "b":	
+		case 3:	
+			
 			user.borrowBook(database);
-			break;	
+
+			break;
+		
 			
-		case "r": 
+		case 4: 
 			user.returnBook(database);
 			break;
 			
-		case "e":
-			try {
-			readerAndWriter.writeToFile(parser.parseBeforeWrite(database.getBooks()), file.getFilepath());
-			}
-			catch (IOException e) {
-				System.out.println("Problem pøi zapisu dat!");	
-				}
-			end=true;
+		case 5:
+			scanner.readLine();
+			user.addAuthor(database);
 			break;
 		
 		

@@ -8,16 +8,28 @@ public class Book {
 		private String autor;
 		private LocalDate releaseDate;	
 		private Boolean borrowed=false;
-		static int staticID=1;
-		private  int ID;
+		private int ID;
 		
 		
-		public Book(String name, String autor, LocalDate releaseDate) {
+		public Book(String name, String autor, LocalDate releaseDate, int ID, Boolean borrowed) {
 			this.name=name;
 			this.autor=autor;
 			this.releaseDate=releaseDate;
-			staticID++;
-			this.ID=staticID;				
+			this.ID=ID;
+			this.borrowed=borrowed;
+						
+		}
+		
+		public String getName() {
+			return name;
+		}
+		
+		public String getAutor() {
+			return autor;		
+		}
+		
+		public LocalDate getDate() {
+			return releaseDate;		
 		}
 		
 			
@@ -32,10 +44,7 @@ public class Book {
 			}			
 		}
 		
-		
-		
-		
-		
+			
 		public void returnBook() {
 			if(borrowed) {
 				this.borrowed=false;
@@ -50,6 +59,8 @@ public class Book {
 			return ID;
 		}
 		
+		
+		
 		@Override
 		public String toString() {
 			String borrowedString="NE";
@@ -60,33 +71,7 @@ public class Book {
 			return "ID:"+ID+"\n"+"Kniha: "+name+"\nAutor: "+ autor+"\nDatum vydání: "+releaseDate+"\nPujčeno: "+borrowedString+ "\n------------";		
 		}			
 		
-		public String getName() {
-			return name;
-		}
+	
+	
 		
-		public String getAutor() {
-			return autor;		
-		}
-		
-		public LocalDate getDate() {
-			return releaseDate;		
-		}
-		
-		public void setID(int ID) {
-				
-			  this.ID=ID;
-			if (ID>=staticID) {
-				
-				setStaticID(ID+1);
-				
-			}
-			
-		}
-		private void setStaticID(int lastID) {
-			this.staticID=ID+1;
-		}
-		static int getStaticID() {
-			return staticID;
-			
-		}
 }
