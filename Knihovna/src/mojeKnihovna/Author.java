@@ -8,15 +8,13 @@ public class Author {
 		public Author(String name, String sureName, int ID) {
 			this.name=name;
 			this.sureName=sureName;
-			this.ID=ID;
-				
+			this.ID=ID;	
 		}
 	
+		
 		@Override
-		public String toString() {
-			
-								
+		public String toString() {					
 			return "ID:"+ID+"\n"+"Jméno: "+name+"\nPøíjmení: "+ sureName+"\n------------";		
 		}	
 	
-}
+  }

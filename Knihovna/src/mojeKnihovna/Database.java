@@ -19,25 +19,23 @@ public class Database {
 		public enum status {BORROWED,NOT_EXIST, ERROR, OK, RETURNED}
 			
 		
-		
 		public Database(String name) {
 			try {
 				connection=DriverManager.getConnection("jdbc:mysql://localhost:3306/myLibrary",name,"");
-				System.out.println("pøipojeno");
+				System.out.println("pï¿½ipojeno");
 			} catch (SQLException e) {
-				System.out.println("Nepøipojeno");
-			
+				System.out.println("Nepï¿½ipojeno");
 			}
 		}
 		
-		public ArrayList <Book>  selectAllBooksFromDB() throws SQLException {
+		public ArrayList <Book>  selectAllBooksFromDB() {
 			query = new Query();		
 			query.selectAllBooks();
-			pstmt = connection.prepareStatement(query.getQuery());
 			
-			resultSet=pstmt.executeQuery();
-			
-			ArrayList <Book> result=new ArrayList<>();
+			ArrayList <Book> result = new ArrayList<Book>();
+			try {
+				pstmt = connection.prepareStatement(query.getQuery());
+				resultSet=pstmt.executeQuery();
 			while(resultSet.next()) {
 				
 				String bookName = resultSet.getString("bookName");
@@ -47,9 +45,13 @@ public class Database {
 				int id = resultSet.getInt("ID");
 				Book book = new Book(bookName, authorName, releaseDate, id, borrowed);
 				result.add(book);
+									}
 			}
+			catch (SQLException e) {
+			System.out.println("Chyba pï¿½i vyhledavï¿½nï¿½ autorï¿½ v DB");
+			result.add(null);
+									}
 			return result;
-					
 		}
 		
 		public ArrayList <Author>  sellectAllAuthors() {
@@ -68,14 +70,13 @@ public class Database {
 				Author author = new Author(authorName, authorSurename, ID);
 				result.add(author);
 				
-				
+			                       }
 			}
-			} catch (SQLException e) {
-				System.out.println("Chyba pøi vyhledavání autorù v DB");
+			catch (SQLException e) {
+				System.out.println("Chyba pï¿½i vyhledavï¿½nï¿½ autorï¿½ v DB");
 				result.add(null);
-				
-			}
-			return result;
+									}
+				return result;
 		}
 		
 		
@@ -93,9 +94,10 @@ public class Database {
 					return true;
 			}else{
 					return false;
-					}
-								
+					}					
 		}
+		
+		
 		private Boolean checkAvailability(int ID) throws SQLException  {
 			Query query = new Query();
 			String [] columns= {"borrowed"};
@@ -114,7 +116,7 @@ public class Database {
 					}
 								
 		}
-		;		
+			
 		
 		public status borrowBook(int ID) {
 			
@@ -133,11 +135,12 @@ public class Database {
 					return status.OK;
 				}
 			} catch (SQLException e) {
-				System.out.println("chyba DB pøi pujèeni knihy");
+				System.out.println("chyba DB pøi pùjèení knihy");
 				return status.ERROR;
 			}
 					
 		}
+		
 		
 	 public status returnBook(int ID) {
 		 Query query = new Query();
@@ -162,6 +165,7 @@ public class Database {
 					
 		}
 
+	 
 	 public void addAuthor(String [] authorData) {
 		 Query query = new Query();
 		 String [] columnsAuthor = {"authorName", "AuthorSurename" };
@@ -171,14 +175,14 @@ public class Database {
 				pstmt.setString(1, authorData[0]);
 				pstmt.setString(2, authorData[1]);
 				pstmt.executeUpdate();
-				
-			} catch (SQLException e) {
+			 } 
+		 catch (SQLException e) {
 				// TODO Auto-generated catch block
 				System.out.println("Chyba pøi založení autora do DB");
-	 
-	 }
+		 						}
 	 }
 	 	
+	 
 	 public void addBook(String [] bookData, int authorID) {
 		 
 		 String [] columnsBook = {"bookName", "relase_date","ID_author" };
@@ -188,20 +192,33 @@ public class Database {
 			pstmt.setString(1,bookData[0]);
 			pstmt.setString(2,bookData[1]);
 			pstmt.setInt(3, authorID);
-		
 			pstmt.executeUpdate();
 			
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			System.out.println("Chyba pøi založení knihy do DB");
 		}
-		 	
-		
-		 
+		 	 
 	 }
 	 
-		
-					
+	 public void deleteBook( int bookID) {
+		 
+		 String [] columnsBook = {"ID"};
+		 query.delete("book", columnsBook);
+		 try {
+			pstmt=connection.prepareStatement(query.getQuery());
+			System.out.println(pstmt.toString());
+			pstmt.setInt(1,bookID);
+			pstmt.executeUpdate();
+			
+			
+	}	catch (SQLException e) {
+			// TODO Auto-generated catch block
+			System.out.println("Chyba pøi založení knihy do DB");
+		}
+		 	 
+	 }
+	 			
 }
 	
 	

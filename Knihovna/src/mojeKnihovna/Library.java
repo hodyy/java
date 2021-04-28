@@ -1,10 +1,6 @@
 package mojeKnihovna;
 
-import java.sql.SQLException;
-
-
-
-public class Library {
+ class Library {
 
 	public static void main(String[] args)  {
 		
@@ -39,14 +35,12 @@ public class Library {
 		
 		boolean end=false;
 		while (!end) {
-	
-			try {
-				display.showAllbooks(database.selectAllBooksFromDB());		
-			} catch (SQLException e) {		
-				System.out.println("chyba pøi vybìru dat z DB");	
-			}
 			
-		System.out.println("ZVOL OPERACI:\n\n1)Pøidat knihu - stiskni (a)\n2)Odebrat knihu - stiskni (d)\n3)Pujèit knihu: stiskni (b)\n4)Vratit knihu: stiskni (r)\n5)Ukonèit program: stiskni (e)");
+		display.showAllbooks(database.selectAllBooksFromDB());			
+		System.out.println("----------Stiskni ENTER --------");
+		scanner.readLine();
+			
+		System.out.println("ZVOL OPERACI:\n\n1)Pøidat knihu\n2)Odebrat knihu\n3)Pujèit knihu:\n4)Vratit knihu:\n5)Pøidat autora:\n6)KONEC:");
 		
 		switch(scanner.readInt()) {
 		
@@ -56,24 +50,30 @@ public class Library {
 			break;
 			
 		case 2:
+			scanner.readLine();
 			user.deleteBook(database); 
 			break;	
 			
 		case 3:	
-			
+			scanner.readLine();
 			user.borrowBook(database);
 
 			break;
 		
-			
 		case 4: 
+			scanner.readLine();
 			user.returnBook(database);
+			
 			break;
 			
 		case 5:
 			scanner.readLine();
 			user.addAuthor(database);
 			break;
+			
+		case 6:
+			end=true;
+			break;	
 		
 		
 		default:

@@ -53,14 +53,12 @@ public abstract class User {
 		
 	}
 	
-	
 	public void addBook(Database database) {
-		
-	
+
 	}
 	public void addAuthor(Database database){
-		
+	
+		}
 		
 	}
 	
-}

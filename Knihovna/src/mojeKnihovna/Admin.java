@@ -6,11 +6,11 @@ public class Admin extends User {
 	
 	@Override
 	public void deleteBook(Database database) {
-		/*
-		 * System.out.println("Zadej ID knihy, která se má odebrat:");
-		 * database.deleteBookFromDatabase(scanner.readInt()); database.showDatabase();
-		 * scanner.readLine();
-		 */
+		
+		System.out.println("Zadej ID knihy:");
+		database.deleteBook(scanner.readInt());
+		scanner.readLine();
+		
 	}
 	
 	@Override
@@ -23,8 +23,13 @@ public class Admin extends User {
 		System.out.println("Zadej přijmení autora");
 		authorData [1]=scanner.readLine();
 		
+		Display display=new Display();
 		database.addAuthor(authorData);
-	
+		display.showAllAuthors(database.sellectAllAuthors());
+		
+		System.out.println("----------Stiskni ENTER --------");
+		scanner.readLine();
+		
 	}
 	
 	@Override

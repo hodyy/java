@@ -22,6 +22,7 @@ public class Query {
 		
 	}
 	
+	
 	public Query selectAllBooks() {
 		queryBuilder= new StringBuilder();
 		queryBuilder.append("select au.authorName, au.authorSurename, bk.* from book  bk join author au on au.`ID`=bk.`ID_author`");
@@ -29,13 +30,13 @@ public class Query {
 		
 	}
 	
+	
 	public Query selectAllAuthors() {
 		queryBuilder= new StringBuilder();
 		queryBuilder.append("select ID, authorName, authorSurename from author");
 		return this; 
 		
 	}
-	
 	
 	
 	public Query selectCount()  {
@@ -51,11 +52,13 @@ public class Query {
 		return this;
 	}
 	
+	
 	public Query where(String column) {
 		queryBuilder.append("WHERE "+column+"=?");
 		return this;
 		
 	}
+	
 	
 	public Query update(String table) {
 		queryBuilder= new StringBuilder();
@@ -64,11 +67,13 @@ public class Query {
 		
 	}
 	
+	
 	public Query set(Object object) {
 		queryBuilder.append("SET "+ object+"=? ");
 		return this;
 	}
 
+	
 	public Query insertInTo(String table, String [] columns){
 		queryBuilder=new StringBuilder();
 		queryBuilder.append("INSERT INTO "+table+" (");
@@ -89,6 +94,19 @@ public class Query {
 	    return this;
 		
 	}
+	
+	
+	public Query delete(String table, String [] columns) {
+		queryBuilder  = new StringBuilder();
+		queryBuilder.append("DELETE FROM ");
+		queryBuilder.append(table + " WHERE ");
+		
+		for (String column: columns) {
+			queryBuilder.append(column+"=?");	
+		}
+		return this;
+	}
+	
 	
 	public String getQuery() 
 	{

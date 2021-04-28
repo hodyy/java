@@ -1,0 +1,10 @@
+<component name="ProjectRunConfigurationManager">
+  <configuration default="false" name="mojeKnihovna." type="Application" factoryName="Application">
+    <option name="ALTERNATIVE_JRE_PATH" value="15" />
+    <option name="MAIN_CLASS_NAME" value="mojeKnihovna.Library" />
+    <module name="projects_java" />
+    <method v="2">
+      <option name="Make" enabled="true" />
+    </method>
+  </configuration>
+</component>
